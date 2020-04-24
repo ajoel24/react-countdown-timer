@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Countdown.css';
 
 export default function Countdown(props) {
   const [countdown, setCountdown] = useState({
@@ -10,7 +11,7 @@ export default function Countdown(props) {
 
   const deadline = new Date(props.deadline);
 
-  setTimeout(function () {
+  const timer = setTimeout(function () {
     const now = new Date().getTime();
     let timeleft = deadline - now;
 
@@ -21,20 +22,45 @@ export default function Countdown(props) {
     let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
 
-    setCountdown({
-      days,
-      hours,
-      minutes,
-      seconds,
-    });
+    if (timeleft < 0) {
+      clearInterval(timer);
+      setCountdown({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+      });
+    } else {
+      setCountdown({
+        days,
+        hours,
+        minutes,
+        seconds,
+      });
+    }
   }, 1000);
 
   return (
-    <div>
-      <h1>Days: {countdown.days}</h1>
-      <h1>Hours: {countdown.hours}</h1>
-      <h1>Minutes: {countdown.minutes}</h1>
-      <h1>Seconds: {countdown.seconds}</h1>
-    </div>
+    <section className="countdown">
+      <h2>Countdown for celebration</h2>
+      <div className="clockdiv">
+        <div>
+          <span className="days">{countdown.days}</span>
+          <div className="smalltext">Days</div>
+        </div>
+        <div>
+          <span className="hours">{countdown.hours}</span>
+          <div className="smalltext">Hours</div>
+        </div>
+        <div>
+          <span className="minutes">{countdown.minutes}</span>
+          <div className="smalltext">Minutes</div>
+        </div>
+        <div>
+          <span className="seconds">{countdown.seconds}</span>
+          <div className="smalltext">Seconds</div>
+        </div>
+      </div>
+    </section>
   );
 }
