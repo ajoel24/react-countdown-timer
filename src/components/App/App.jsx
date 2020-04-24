@@ -3,7 +3,7 @@ import Countdown from '../Countdown/Countdown';
 import './App.css';
 
 function App() {
-  return <Countdown deadline="April 25, 2020 16:35:00" />;
+  return <Countdown deadline="April 24, 2020 16:52:00" />;
 }
 
 export default App;

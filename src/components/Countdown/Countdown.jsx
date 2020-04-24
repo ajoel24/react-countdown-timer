@@ -8,6 +8,9 @@ export default function Countdown(props) {
     minutes: 0,
     seconds: 0,
   });
+  const [countdownTitle, setCountdownTitle] = useState(
+    `Countdown till ${props.deadline}`
+  );
 
   const deadline = new Date(props.deadline);
 
@@ -30,6 +33,7 @@ export default function Countdown(props) {
         minutes: 0,
         seconds: 0,
       });
+      setCountdownTitle('Countdown over');
     } else {
       setCountdown({
         days,
@@ -42,7 +46,7 @@ export default function Countdown(props) {
 
   return (
     <section className="countdown">
-      <h2>Countdown for celebration</h2>
+      <h2>{countdownTitle}</h2>
       <div className="clockdiv">
         <div>
           <span className="days">{countdown.days}</span>
