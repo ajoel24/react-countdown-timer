@@ -1,8 +1,9 @@
-import React from "react";
-import "./App.css";
+import React from 'react';
+import Countdown from '../Countdown/Countdown';
+import './App.css';
 
 function App() {
-	return <h1>Hello</h1>;
+  return <Countdown deadline="April 27, 2020 16:20:00" />;
 }
 
 export default App;
